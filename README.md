@@ -1,74 +1,40 @@
-🪙 Is Bitcoin Really 'Digital Gold'? 📊
+Is Bitcoin Really 'Digital Gold'? 🪙
+An analytical investigation into the correlation between Bitcoin, Gold, and the S&P 500 over a 10-year period.
 
-This project conducts a data-driven investigation into the 'Digital Gold' hypothesis. 
-By analyzing 10 years of market data, I test whether Bitcoin behaves as a safe-haven asset, an inflation hedge, or simply a high-beta technology stock.
+🔬 Hypothesis
+Safe Haven: When the stock market crashes, do Bitcoin and Gold both go up? Or does Bitcoin crash like a high-risk 'Tech Stock'?
 
+Inflation Hedge: During the period of record global inflation (2022-2024), which asset protected purchasing power better?
 
+Correlation Shift: Has the relationship between Bitcoin and Gold remained constant, or have they become more coupled as institutional investors buy both?
 
-🧠 Research Hypotheses
+📊 Data Details
+Source: Using the yfinance library to pull 10 years of daily price data for Gold, Bitcoin, and the S&P 500.
 
-1. Safe Haven Test: When the S&P 500 crashes, do Bitcoin and Gold move inversely to the market, or does Bitcoin crash alongside equities?
-2. Inflation Hedge: During the 2022–2024 inflationary spike, which asset better protected purchasing power?
-3. Correlation Shift: Has the institutionalization of Bitcoin (via ETFs) coupled its price action more tightly with Gold?
+Cleaning: * Handled the "Weekend Gap" for Gold and S&P 500 (since Bitcoin trades 24/7 while traditional markets do not).
 
+Aligned timestamps to ensure consistent day-to-day comparison.
 
-
-🛠️ Data & Methodology
-
-Data Sources
-I utilize the yfinance library to extract 10 years of daily historical data for: 
-  - Bitcoin (BTC-USD)
-  - Gold (GC=F)
-  - S&P 500 (^GSPC)
-
-Data Pipeline
-- Cleaning: Resolved the 'Weekend Gap' issue — since Bitcoin trades 24/7 while Gold and the S&P 500 do not, I aligned timestamps to standard trading days.
-- Normalization: Because of the massive price disparity (e.g., $100k BTC vs $2k Gold), I utilized Log Returns and Indexed Returns (Base 100) to ensure a fair 'apples-to-apples' comparison.
-
-
+Normalization: Applied Log Scale and Indexed Returns to allow for an accurate comparison between a $100k asset (BTC) and a $2k asset (Gold).
 
 📈 Analysis Workflow
+Exploratory Analysis: Plotting the "Big Picture" to see long-term trends across all three assets.
 
-1. Exploratory Data Analysis
-A 'big picture' view of all three assets over the last decade to identify general trends and growth cycles.
+Crisis Deep-Dive: Zooming in on specific volatility windows:
 
-2. Crisis Deep-Dives
-I 'zoom in' on critical economic pivots:
-- 2020 COVID Crash: Testing immediate liquidity responses.
-- 2022–2024 Inflationary Period: Evaluating purchasing power protection.
-- 2024 ETF Era: Analyzing the impact of institutional entry.
+2020: The COVID-19 Market Crash.
 
-3. Correlation & Volatility
-- Rolling Correlation: A time-series heatmap visualizing how the relationship between BTC and Gold evolves.
-- Volatility Analysis: Calculating the standard deviation of returns to compare the 'risk' profile of each asset.
+2022–2024: Period of record-high inflation.
 
+2024: The launch of Bitcoin ETFs.
 
+Visualizing Relationships:
 
-🚀 Getting Started
+Heatmaps: Showing how the relationship between assets changes over time.
 
-Prerequisites
-Bash
-pip install yfinance pandas matplotlib seaborn numpy
+Rolling Correlation: Calculating coefficients and volatility to track shifting sentiments.
 
-Usage
-Clone the repository:
+🏁 Conclusion
+The Verdict: Based on the data, is Bitcoin truly "Digital Gold" or something else entirely?
 
-Bash
-git clone https://github.com/robertgeddis/rg_project.git
-
-Run the analysis:
-
-Bash
-python main_analysis.py
-
-
-
-⚖️ Final Verdict
-TBC. 
-
-
-
-📬 Contact & Contributions
-Feel free to open an issue or submit a pull request if you have ideas for additional metrics (e.g. M2 Money Supply correlation).
-
-Author: Robert Geddis
+(Check the notebooks in this repository for the data-driven results!)
