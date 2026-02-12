@@ -1,85 +1,68 @@
-# 📋 Template-Anleitung
+🪙 Is Bitcoin Really 'Digital Gold'? 📊
 
-> **Für Kursteilnehmer*innen:** Diese Sektion nach dem Setup deines Projekts löschen!
-
-## So verwenden Sie dieses Template:
-Dieses Template hilft dir, dein Data Science Projekt effizient zu organisieren und zu dokumentieren. Es bietet eine gängige Struktur, um deine Arbeit zu planen, durchzuführen und zu präsentieren.
-
-### 1. Template verwenden
-Templates können in GitHub über den Button **"Use this template" -> "Create a new repository"** in der oberen rechten Ecke in ein eigenes Repository überführt werden. Nutze diese Vorlage als Inspiration und passe sie an dein Projekt an! 
-
-### 2. Projekt klonen
-Danach kannst du dein neues Repository direkt über VS Code klonen. Dazu öffnest du in VS Code die Kommando-Palette (Strg+Shift+P) bzw. (Cmd+Shift+P) auf dem Mac und gibst **"Git: Clone"** ein. Wähle dann "Clone from GitHub..." und melde dich ggf. bei GitHub an. Suche nach deinem Repository und wähle einen lokalen Ordner aus, in dem das Projekt gespeichert werden soll.
-
-### 3. Abhängigkeiten installieren
-Nachdem du das Repository geklont hast, musst du die Abhängigkeiten installieren. Öffne dazu ein neues Terminal in VS Code über die Menüleiste "Terminal"->"Neues Terminal" und führe die folgenden Befehle aus:
-
-```bash
-uv sync
-```
-
-### 4. Erweiterungen hinzufügen
-Für dieses Projekt empfehlen wir die Installation der folgenden VS Code Erweiterungen:
-- **Python** (Microsoft) - Bietet Unterstützung für Python-Entwicklung.
-- **Jupyter** (Microsoft) - Ermöglicht das Arbeiten mit Jupyter Notebooks direkt in VS Code.
-- **Even Better TOML** (tamasfe) - Verbessert die Bearbeitung von TOML-Dateien.
-- **Ruff** (Astral Software) - Ein schneller Linter für Python, der dir hilft, sauberen Code zu schreiben.
-- **Material Icon Theme** (PKief) - Verbessert die Dateisymbole in VS Code für eine bessere Übersicht.
-
-Dafür kannst du den Erweiterungs-Tab in VS Code öffnen (Symbol mit den vier Quadraten auf der linken Seitenleiste) und in die Suchleiste `@recommended` eingeben. Danach sollten dir die empfohlenen Erweiterungen angezeigt werden.
-
-### Notebooks ausführen
-Im Ordner `notebooks/` findest du ein Jupyter Notebook namens `01_exploration.ipynb`, das als Ausgangspunkt für deine Datenanalyse dient. Öffne das Notebook in VS Code und wähle oben rechts dein virtuelles Environment als Kernel aus. Führe die Zellen nacheinander aus. Wenn alles geklappt hat wird das Notebook einen Datensatz von Kaggle laden und im Ordner `data/` speichern.
-
-Von hier an kannst du mit deinem Projekt starten und die Vorlagen nach belieben anpassen.
-
-Schaue dir für weitere Informationen zum Template die Datei [docs/project.md](./docs/project.md) an.
+This project conducts a data-driven investigation into the 'Digital Gold' hypothesis. 
+By analyzing 10 years of market data, I test whether Bitcoin behaves as a safe-haven asset, an inflation hedge, or simply a high-beta technology stock.
 
 
-Für dein Projekt kannst du die folgenden Abschnitte in der `README.md` Datei anpassen, um dein Projekt zu beschreiben und zu präsentieren. Lösche anschließend diese Anleitung.
+🧠 Research Hypotheses
 
----
-
-# [DEIN PROJEKTTITEL HIER] 🚀
-
-> Eine kurze, prägnante Beschreibung deines Data Science Projekts in 1-2 Sätzen.
-
-## 📊 Projektübersicht
-
-**Problemstellung:** 
-<!-- Beschreibe das Problem, das du lösen möchtest -->
-
-**Ziel:** 
-<!-- Was ist das Hauptziel deines Projekts? -->
-
-**Methoden:** 
-<!-- Welche Techniken/Algorithmen verwendest du? -->
+1. Safe Haven Test: When the S&P 500 crashes, do Bitcoin and Gold move inversely to the market, or does Bitcoin crash alongside equities?
+2. Inflation Hedge: During the 2022–2024 inflationary spike, which asset better protected purchasing power?
+3. Correlation Shift: Has the institutionalization of Bitcoin (via ETFs) coupled its price action more tightly with Gold?
 
 
+🛠️ Data & Methodology
 
-## Setup
+Data Sources
+I utilize the yfinance library to extract 10 years of daily historical data for: 
+  - Bitcoin (BTC-USD)
+  - Gold (GC=F)
+  - S&P 500 (^GSPC)
 
-Klone das Repository
-```bash
-# Repository klonen
-git clone [DEIN-REPO-LINK]
-cd [REPO-NAME]
-```
-
-Installiere [uv](https://uv.dev) (falls noch nicht installiert) und synchronisiere die Abhängigkeiten
-```bash
-# Dependencies installieren
-uv sync
-```
-
-### Ausführung
-
-Notebooks in dieser Reihenfolge ausführen:
-1. notebooks/01_exploration.ipynb
-<!--
-2. notebooks/02_preprocessing.ipynb
-3. notebooks/03_modeling.ipynb
-4. notebooks/04_results.ipynb
--->
+Data Pipeline
+- Cleaning: Resolved the 'Weekend Gap' issue — since Bitcoin trades 24/7 while Gold and the S&P 500 do not, I aligned timestamps to standard trading days.
+- Normalization: Because of the massive price disparity (e.g., $100k BTC vs $2k Gold), I utilized Log Returns and Indexed Returns (Base 100) to ensure a fair 'apples-to-apples' comparison.
 
 
+📈 Analysis Workflow
+
+1. Exploratory Data Analysis
+A 'big picture' view of all three assets over the last decade to identify general trends and growth cycles.
+
+2. Crisis Deep-Dives
+I 'zoom in' on critical economic pivots:
+- 2020 COVID Crash: Testing immediate liquidity responses.
+- 2022–2024 Inflationary Period: Evaluating purchasing power protection.
+- 2024 ETF Era: Analyzing the impact of institutional entry.
+
+3. Correlation & Volatility
+- Rolling Correlation: A time-series heatmap visualizing how the relationship between BTC and Gold evolves.
+- Volatility Analysis: Calculating the standard deviation of returns to compare the 'risk' profile of each asset.
+
+
+🚀 Getting Started
+
+Prerequisites
+Bash
+pip install yfinance pandas matplotlib seaborn numpy
+
+Usage
+Clone the repository:
+
+Bash
+git clone https://github.com/robertgeddis/rg_project.git
+
+Run the analysis:
+
+Bash
+python main_analysis.py
+
+
+⚖️ Final Verdict
+TBC. 
+
+
+📬 Contact & Contributions
+Feel free to open an issue or submit a pull request if you have ideas for additional metrics (e.g. M2 Money Supply correlation).
+
+Author: Robert Geddis
