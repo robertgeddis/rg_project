@@ -30,4 +30,4 @@ An analytical investigation into the correlation between Bitcoin, Gold, and the 
 
 ## 🏁 Conclusion
 
-Check the notebooks in this repository for the final data-driven verdict!
+TBC
