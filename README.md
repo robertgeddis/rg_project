@@ -1,6 +1,6 @@
 # Is Bitcoin Really 'Digital Gold'? 🪙
 
-An analytical investigation into the correlation between Bitcoin, Gold, and the S&P 500.
+An analytical investigation into the correlation between Bitcoin and Gold.
 
 ---
 
@@ -14,15 +14,15 @@ An analytical investigation into the correlation between Bitcoin, Gold, and the 
 
 ## 📊 Data Details
 
-* **Source:** 10 years of daily price data for Gold, Bitcoin and the S&P 500 from the `yfinance` library.
-* **Cleaning:** * Handled the 'Weekend Gap' for Gold and S&P 500 by aligning timestamps to ensure consistent day-to-day comparison.
-* **Normalization:** Applied **Log Scale** and **Indexed Returns** to allow for an accurate comparison between a $100k asset (BTC) and a $2k asset (Gold).
+* **Source:** 10 years of daily market data from the `yfinance` library and 10 years monthly macro data from the pandas_datareader library. 
+* **Cleaning:** * Handled the 'Weekend Gap' for non-Bitcoin market price data by creating both forward filled and synced versions to ensure consistent comparison.
+* **Normalization:** Applied Base-100 indexing for market price data to allow for an accurate comparison between a $100k asset (BTC) and a $2k asset (Gold).
 
 ---
 
 ## 📈 Analysis Workflow
 
-1. **Exploratory Analysis:** Plotting the 'Big Picture' to see long-term trends across all three assets.
+1. **Exploratory Analysis:** Plotting the 'Big Picture' to see long-term trends across all market prices and macro indexes.
 2. **Crisis Deep-Dive:** Zooming in on specific volatility windows (2020 COVID, 2022-2024 Inflation).
 3. **Visualizing Relationships:** Using Heatmaps and Rolling Correlation to track shifting sentiments.
 
