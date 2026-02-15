@@ -14,6 +14,7 @@ rg_project/
 │   ├── extensions.json         # VS Code extensions
 │   └── settings.json           # Workspace-specific settings
 ├── data/                       # Data directory
+│   ├── etl_scripts/            # Scripts for extracting, cleaning and finalizing data 
 │   ├── raw/                    # Raw data
 │   ├── clean/                  # Data processed through cleaning measures
 │   ├── final/                  # Finalized data ready to be commited to database
@@ -21,8 +22,8 @@ rg_project/
 ├── docs/                       # Project documentation
 │   └── project.md              # Project description and instructions
 ├── notebooks/                  # Jupyter Notebooks and Python Scripts
-│   ├── nb_setup_v2.py          # Script for establishing SQlite3 connections to database
-│   └── sql_import.py           # Script for importing database into Jupyter Notebooks
+│   ├── nb_setup_v2.py          # Establishing SQlite3 connection to database
+│   └── sql_import.py           # Importing database into Jupyter Notebooks
 ├── src/                        # Python Source Code
 │   └── core/
 │       ├── __init__.py         # Make core a package
@@ -45,88 +46,58 @@ Includes VS Code-specific configurations:
 
 ### `data/`
 
-- **`raw/`**: Ursprüngliche, unveränderte Rohdaten
-- **`raw/`**: Ursprüngliche, unveränderte Rohdaten
-- **`processed/`**: Bereinigte, transformierte oder aggregierte Daten
-- **`processed/`**: Bereinigte, transformierte oder aggregierte Daten
+- **`etl_scripts/`**: Jupyter Notebooks for creating raw, clean and final versions of data 
+- **`raw/`**: Original unprocessed version of data 
+- **`clean/`**: Data quality checking and cleaning up NaN values 
+- **`final/`**: Transforming data using Base-100 normalization and adding new % change columns 
+- **`rg_project_database.db/`**: Warehouse of finalized data for analysis
 
 ### `notebooks/`
 
-Jupyter Notebooks für explorative Datenanalyse und Experimente.
+Jupyter Notebooks for exploratory data analysis and experiments.
 
-- **`01_exploration.ipynb`**: Beispiel-Notebook zum Testen des Setups
-  - Lädt einen Datensatz von Kaggle
-  - Zeigt erste explorative Analysen
-  - Dient als Vorlage für weitere Notebooks
-
-**Naming Convention**: Nummerierung mit Präfix (01*, 02*, ...) für chronologische Reihenfolge.
+- **`nb_setup_v2.py`**: Script for establishing a connection to rg_project_database.db
+- **`sql_import.py`**: Script to running rg_project_database.db within Jupyter Notebooks
 
 ### `src/core/`
 
-Python-Module mit wiederverwendbarem Code, der aus Notebooks ausgelagert wird.
+Python modules with reusable code that are outsourced from notebooks.
 
-- **`__init__.py`**: Macht `core` zu einem Python-Package
-- **`data.py`**: Funktionen zum Laden und Verarbeiten von Daten (z.B. Kaggle Downloads)
-
-**Best Practice**: Code, der in mehreren Notebooks verwendet wird, sollte in Module ausgelagert werden.
+- **`__init__.py`**: Make `core` a Python package
 
 ### `pyproject.toml`
 
-Zentrale Konfigurationsdatei für das Python-Projekt. Sie definiert Metadaten und Abhängigkeiten.
+Central configuration file for the Python project. It defines metadata and dependencies.
 
-#### Projekt-Metadaten anpassen
-
-```toml
+```pyproject.toml
 [project]
-name = "dpp-template"                       # Ändern Sie dies auf Ihren Projektnamen
-version = "0.1.0"                           # Versionsnummer
-description = "Add your description here"   # Kurze Projektbeschreibung
-readme = "README.md"                        # Pfad zur README-Datei
-requires-python = ">=3.14"                  # Unterstützte Python-Version
-```
-
-*Passe diese Felder an dein Projekt an!*
-
-#### Abhängigkeiten
-
-Die `dependencies` Liste enthält alle benötigten Python-Pakete:
-
-```toml
+name = "dpp-template"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
 dependencies = [
-    "ipykernel>=7.0.1",      # Jupyter Kernel
-    "kagglehub>=0.3.13",     # Kaggle Integration
-    "matplotlib>=3.10.7",    # Plotting
-    "pandas>=2.3.3",         # Datenanalyse
-    "seaborn>=0.13.2",       # Visualisierung
-    "duckdb>=1.4.1",         # In-Memory Datenbank für Analysen mit SQL
-    "scikit-learn>=1.7.2",   # Machine Learning
+    "ipykernel>=7.0.1",
+    "kagglehub>=0.3.13",
+    "matplotlib>=3.10.7",
+    "pandas>=2.3.3",
+    "seaborn>=0.13.2",
+    "duckdb>=1.4.1",
+    "scikit-learn>=1.7.2",
+    "ipywidgets>=8.1.8",
 ]
+
+[build-system]
+requires = ["uv_build>=0.8.9,<0.9.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "core"
 ```
-
-> [**ipykernel**](https://ipykernel.readthedocs.io/)  
-  Stellt die Verbindung zwischen Jupyter Notebooks und dem Python-Kernel her. Ermöglicht die interaktive Ausführung von Python-Code in Jupyter-Umgebungen.
-
-> [**kagglehub**](https://github.com/Kaggle/kagglehub)  
-  Offizielles Python-Package für die Integration mit Kaggle, ermöglicht den einfachen Zugriff auf Kaggle-Datasets und -Modelle. Vereinfacht das Herunterladen und Verwalten von Kaggle-Ressourcen direkt aus Python-Code.
-
-> [**matplotlib**](https://matplotlib.org/stable/index.html)  
-  Die grundlegende Plotting-Bibliothek für Python, bietet umfangreiche Möglichkeiten zur Erstellung statischer, animierter und interaktiver Visualisierungen. Dient als Basis für viele andere Visualisierungsbibliotheken.
-
-> [**pandas**](https://pandas.pydata.org/docs/)  
-  Die zentrale Bibliothek für Datenanalyse in Python mit leistungsstarken Datenstrukturen wie DataFrame und Series. Bietet intuitive Werkzeuge für Datenmanipulation, -bereinigung und -analyse.
-
-> [**seaborn**](https://seaborn.pydata.org/)  
-  High-Level-Visualisierungsbibliothek basierend auf matplotlib, spezialisiert auf statistische Grafiken. Ermöglicht die Erstellung ästhetisch ansprechender und informativer Visualisierungen mit weniger Code.
-
-> [**duckdb**](https://duckdb.org/docs/)  
-  Hochperformante In-Memory SQL-Datenbank, optimiert für analytische Workloads (OLAP). Ermöglicht SQL-Abfragen direkt auf DataFrames und CSV-Dateien ohne externe Datenbankserver.
-
-> [**scikit-learn**](https://scikit-learn.org/stable/documentation.html)  
-  Die umfassendste Machine-Learning-Bibliothek für Python mit Algorithmen für Klassifikation, Regression, Clustering und mehr. Bietet eine einheitliche API und umfangreiche Tools für Modelltraining, -evaluation und -präprozessierung.
 
 #### Build System
 
-Das Build System ermöglicht es, den `src/core` Code als importierbares Python-Package zu verwenden:
+The build system allows the `src/core` code to be used as an importable Python package:
 
 ```toml
 [build-system]
@@ -137,18 +108,16 @@ build-backend = "uv_build"
 module-name = "core"
 ```
 
-Dadurch kannst du in Notebooks `from core.data import ...` verwenden.
-
 ### `.gitignore`
 
-Definiert Dateien und Ordner, die nicht ins Git Repository committed werden sollen:
+Defines files and folders that should not be committed to the Git repository:
 
-- Virtuelle Umgebungen (`.venv/`)
-- Datenverzeichnisse (`data/`)
-- Cache-Dateien (`__pycache__/`, `*.pyc`)
-- IDE-spezifische Dateien
-- Wurde mit [gitignore.io](https://www.toptal.com/developers/gitignore) generiert
+- Virtual environments (`.venv/`)
+- Data directories (`data/`)
+- Cache files (`__pycache__/`, `*.pyc`)
+- IDE-specific files
+- Was with [gitignore.io](https://www.toptal.com/developers/gitignore) generated
 
 ### `uv.lock`
 
-Lock-File, das exakte Versionen aller Abhängigkeiten festhält. Gewährleistet Reproduzierbarkeit.
+A lock file that stores the exact versions of all dependencies. Ensures reproducibility.
