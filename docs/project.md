@@ -1,53 +1,54 @@
-# Data Science Projekt Template - Dokumentation
+# Project Documentation
 
-## Überblick
+## Overview
 
-Dieses Template bietet eine strukturierte Grundlage für Data Science und Data Analytics Projekte. Es folgt Best Practices für Organisation, Reproduzierbarkeit und kollaboratives Arbeiten.
+Below is an outline of the foundation for the 'Is Bitcoin Digital Gold' project. It follows best practices for organization, reproducibility, and collaborative work.
 
-## Projektstruktur
+## Project Structure
 
 ```
-template/
+rg_project/
 ├── .git/                       # Git Repository
-├── .venv/                      # Virtuelle Python-Umgebung
-├── .vscode/                    # VS Code Konfiguration
-│   ├── extensions.json         # Empfohlene VS Code Extensions
-│   └── settings.json           # Workspace-spezifische Einstellungen
-├── data/                       # Datenverzeichnis (nicht versioniert)
-│   ├── raw/                    # Rohdaten
-│   └── processed/              # Verarbeitete Daten
-├── docs/                       # Dokumentation
-│   └── project.md              # Projektbeschreibung und Anleitungen
-├── notebooks/                  # Jupyter Notebooks
-│   └── 01_exploration.ipynb    # Beispiel-Notebook
+├── .venv/                      # Virtual Python environment
+├── .vscode/                    # VS Code configuration
+│   ├── extensions.json         # VS Code extensions
+│   └── settings.json           # Workspace-specific settings
+├── data/                       # Data directory
+│   ├── raw/                    # Raw data
+│   ├── clean/                  # Data processed through cleaning measures
+│   ├── final/                  # Finalized data ready to be commited to database
+│   └── rg_project_database.db  # Database for housing finalized data                  
+├── docs/                       # Project documentation
+│   └── project.md              # Project description and instructions
+├── notebooks/                  # Jupyter Notebooks and Python Scripts
+│   ├── nb_setup_v2.py          # Script for establishing SQlite3 connections to database
+│   └── sql_import.py           # Script for importing database into Jupyter Notebooks
 ├── src/                        # Python Source Code
 │   └── core/
-│       ├── __init__.py         # Macht core zu einem Package
-│       └── data.py             # Datenlade-Funktionen
-├── .gitignore                  # Git Ignore Regeln
-├── .python-version             # Python Version für uv
-├── pyproject.toml              # Projekt-Konfiguration
-├── README.md                   # Projekt-Beschreibung
-└── uv.lock                     # Abhängigkeiten Lock-File
+│       ├── __init__.py         # Make core a package
+│       └── data.py             # Data loading functions
+├── .gitignore                  # Git Ignore rules
+├── .python-version             # Python Version fur uv
+├── pyproject.toml              # Project configuration
+├── README.md                   # Project description
+└── uv.lock                     # Dependencies Lock file
 ```
 
 ## Verzeichnisse und Dateien
 
 ### `.vscode/`
 
-Enthält VS Code spezifische Konfigurationen:
+Includes VS Code-specific configurations:
 
-- **`extensions.json`**: Empfohlene VS Code Extensions für das Projekt (z.B. Python, Jupyter)
-- **`settings.json`**: Workspace-spezifische Einstellungen
+- **`extensions.json`**: VS Code extensions for the project (e.g., Python, Jupyter)
+- **`settings.json`**: Workspace-specific settings
 
 ### `data/`
 
-Das Datenverzeichnis ist durch `.gitignore` vom Versionskontrollsystem ausgeschlossen und sollte **nicht** ins Repository committed werden.
-
+- **`raw/`**: Ursprüngliche, unveränderte Rohdaten
 - **`raw/`**: Ursprüngliche, unveränderte Rohdaten
 - **`processed/`**: Bereinigte, transformierte oder aggregierte Daten
-
-**Wichtig**: Rohdaten sollten niemals überschrieben werden. Alle Transformationen werden in verarbeitete Daten gespeichert.
+- **`processed/`**: Bereinigte, transformierte oder aggregierte Daten
 
 ### `notebooks/`
 
@@ -151,82 +152,3 @@ Definiert Dateien und Ordner, die nicht ins Git Repository committed werden soll
 ### `uv.lock`
 
 Lock-File, das exakte Versionen aller Abhängigkeiten festhält. Gewährleistet Reproduzierbarkeit.
-
-**Wichtig**: Diese Datei sollte ins Repository committed werden!
-
-## Dependency Management mit UV
-
-UV ist ein moderner, schneller Python Package Manager. Hier sind die wichtigsten Befehle:
-
-### Pakete hinzufügen
-
-```bash
-uv add <paketname>
-```
-
-Beispiel:
-
-```bash
-uv add numpy
-uv add plotly>=5.0.0
-```
-
-Dies fügt das Paket zu `pyproject.toml` hinzu und aktualisiert `uv.lock`.
-
-### Pakete entfernen
-
-```bash
-uv remove <paketname>
-```
-
-Beispiel:
-
-```bash
-uv remove numpy
-```
-
-### Abhängigkeiten synchronisieren
-
-```bash
-uv sync
-```
-
-Installiert alle in `pyproject.toml` definierten Pakete und bringt die virtuelle Umgebung auf den aktuellen Stand.
-
-**Wichtig**: Führe `uv sync` aus nach:
-
-- Clone eines Repositories
-- Änderungen an `pyproject.toml`
-- Pull von Updates
-
-## Workflow
-
-### Projekt-Setup
-
-1. Repository klonen oder Template kopieren
-2. Abhängigkeiten installieren: `uv sync`
-3. Öffne `01_exploration.ipynb` in VS Code und Wähle oben rechts dein Environment als Kernel
-4. `01_exploration.ipynb` ausführen, um Setup zu testen.
-5. Bei Problemen an Mentoring wenden
-
-### Entwicklung
-
-1. Analysen in Notebooks durchführen
-2. Wiederverwendbaren Code in `src/core/` Module auslagern
-3. Daten in `data/raw/` ablegen (nicht committen!)
-4. Verarbeitete Daten in `data/processed/` speichern
-5. Regelmäßig committen mit aussagekräftigen Commit-Messages
-6. Mindestens einmal pro Tag Änderungen auf GitHub pushen
-
-### Kollaboration
-
-1. Regelmäßig pushen und pullen um Konflikte zu vermeiden
-2. Nach Änderungen an `pyproject.toml` bzw. `uv.lock` immer `uv sync` ausführen
-
-## Best Practices
-
-- **Daten nicht versionieren**: Große Datensätze gehören nicht ins Git Repository
-- **Reproduzierbarkeit**: `uv.lock` committen für identische Umgebungen
-- **Code-Organisation**: Wiederholter Code → Module, Einmalige Analysen → Notebooks
-- **Dokumentation**: README und Docstrings aktuell halten
-- **Naming**: Aussagekräftige Namen für Notebooks und Module
