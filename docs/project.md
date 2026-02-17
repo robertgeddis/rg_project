@@ -24,6 +24,7 @@ rg_project/
 ├── notebooks/                  # Jupyter Notebooks and Python Scripts
 │   ├── nb_setup_v2.py          # Establishing SQlite3 connection to database
 │   └── sql_import.py           # Importing database into Jupyter Notebooks
+├── plots/                      # Houses visualisations
 ├── src/                        # Python Source Code
 │   └── core/
 │       ├── __init__.py         # Make core a package
