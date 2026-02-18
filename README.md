@@ -6,9 +6,9 @@ An analytical investigation into the correlation between Bitcoin and Gold.
 
 ## 🔬 Hypothesis
 
-* **Safe Haven:** When the stock market crashes, do Bitcoin and Gold both go up? Or does Bitcoin crash like a high-risk 'Tech Stock'?
-* **Inflation Hedge:** During the period of record global inflation (2022-2024), which asset protected purchasing power better?
-* **Correlation Shift:** Has the relationship between Bitcoin and Gold remained constant, or have they become more coupled as institutional investors buy both?
+* **Safe Haven:** Does Bitcoin act like a fail safe such as Gold or a tech stock?
+* **Inflation Hedge:** How did Bitcoin and Gold behave during the record inflation of 2022-2024?
+* **Institutional Coupling:** Has institutional investment in Bitcoin made it more like Gold or like a tech stock?
 
 ---
 
@@ -22,9 +22,9 @@ An analytical investigation into the correlation between Bitcoin and Gold.
 
 ## 📈 Analysis Workflow
 
-1. **Exploratory Analysis:** Plotting the 'Big Picture' to see long-term trends across all market prices and macro indexes.
-2. **Crisis Deep-Dive:** Zooming in on specific volatility windows (2020 COVID, 2022-2024 Inflation).
-3. **Visualizing Relationships:** Using Heatmaps and Rolling Correlation to track shifting sentiments.
+1. **Exploratory Analysis:** Plotting the 'Big Picture' to see long-term trends across all market based price metrics.
+2. **Correlations and Trends:** Exploring the relationship between Bitcoin, Gold and macro-economic indexes.
+3. **Causality and Forecasting:** Testing relationsips between Bitcoin and macro-economic indexes to test the gold vs stock thesis.
 
 ---
 
